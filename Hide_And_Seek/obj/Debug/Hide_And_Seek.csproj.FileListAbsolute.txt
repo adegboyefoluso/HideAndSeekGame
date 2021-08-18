@@ -1,0 +1,7 @@
+C:\Users\Andrew Simmons\source\repos\Hide_And_Seek\Hide_And_Seek\obj\Debug\Hide_And_Seek.csproj.AssemblyReference.cache
+C:\Users\Andrew Simmons\source\repos\Hide_And_Seek\Hide_And_Seek\obj\Debug\Hide_And_Seek.csproj.CoreCompileInputs.cache
+C:\Users\Andrew Simmons\source\repos\Hide_And_Seek\Hide_And_Seek\bin\Debug\Hide_And_Seek.exe.config
+C:\Users\Andrew Simmons\source\repos\Hide_And_Seek\Hide_And_Seek\bin\Debug\Hide_And_Seek.exe
+C:\Users\Andrew Simmons\source\repos\Hide_And_Seek\Hide_And_Seek\bin\Debug\Hide_And_Seek.pdb
+C:\Users\Andrew Simmons\source\repos\Hide_And_Seek\Hide_And_Seek\obj\Debug\Hide_And_Seek.exe
+C:\Users\Andrew Simmons\source\repos\Hide_And_Seek\Hide_And_Seek\obj\Debug\Hide_And_Seek.pdb
