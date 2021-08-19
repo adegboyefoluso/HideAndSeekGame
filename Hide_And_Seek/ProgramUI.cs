@@ -43,11 +43,11 @@ namespace Hide_And_Seek
           "You are in the Living Room. It has a lamp, a long brown leather couch against the wall, " +
           "an entertainment center with a tv on top, a front door leading to the driveway, and a closet near the front door");
 
-        public static House LivingRoom = new House(new List<string> { "Couch", "Entertainment center", "Closet" },
+        public static House LivingRoom = new House(new List<string> { "Couch", "Entertainmentcenter", "Closet" },
             new List<string> { "Front Yard", "Kitchen" },
             new List<string> { "Front Yard Exit", "Kitchen Exit", "Master Bedroom Exit", "Bedroom Exit" },
-            "You are in the Living Room. It has a lamp, a long brown leather couch against the wall, " +
-            "an entertainment center with a tv on top, a front door leading to the driveway, and a closet near the front door");
+            "You are in the Living Room. It has a lamp,\n a long brown leather couch against the wall, " +
+            "an entertainment center with a tv on top, \n a front door leading to the driveway, and a closet near the front door");
 
 
 
@@ -92,143 +92,216 @@ namespace Hide_And_Seek
 
         public void Run()
         {
-            homescreensplash();
+            HomeScreenSplash();
             Console.ReadKey();
-            House currentroom = LivingRoom;
-            string hiddingplace=" ";
-
+           
+            
+            // Random generator for the room
             var randomroom = new Random();
             var roomlist = new List<string> { "MasterBedroom", "Bedroom", "Kitchen", "BathRoom", "FrontYard", "BackYard", "LivingRoom" };
             int roomindex = randomroom.Next(0,roomlist.Count-1);
-            
+            // Calling the random generator  for the hideout
             string room = roomlist[roomindex];
-            //if (room == "MasterBedroom")
-            //{
-            //    var randomhideout = new Random();
-            //    int hideout = randomhideout.Next(1,MasterBedroom.HidingObjects.Count);
-            //     hiddingplace = MasterBedroom.HidingObjects[hideout];
-            //}
-            //else if (room == "Bedroom")
-            //{
-            //    var randomhideout = new Random();
-            //    int hideout = randomhideout.Next(1,Bedroom.HidingObjects.Count);
-            //     hiddingplace = MasterBedroom.HidingObjects[hideout];
+            var result = RandomString(room);
 
-            //}
-            //else if (room == "Kitchen")
-            //{
-            //    var randomhideout = new Random();
-            //    int hideout = randomhideout.Next(1,Kitchen.HidingObjects.Count);
-            //     hiddingplace = MasterBedroom.HidingObjects[hideout];
-
-            //}
-            //else if (room == "BathRoom")
-            //{
-            //    var randomhideout = new Random();
-            //    int hideout = randomhideout.Next(1,BathRoom.HidingObjects.Count);
-            //     hiddingplace = MasterBedroom.HidingObjects[hideout];
-
-            //}
-            //else if (room == "LongHallWay")
-            //{
-            //    var randomhideout = new Random();
-            //    int hideout = randomhideout.Next(1,LongHallWay.HidingObjects.Count);
-            //     hiddingplace = MasterBedroom.HidingObjects[hideout];
-
-            //}
-            //else if (room == "FrontYard")
-            //{
-            //    var randomhideout = new Random();
-            //    int hideout = randomhideout.Next(1,FrontYard.HidingObjects.Count);
-            //     hiddingplace = MasterBedroom.HidingObjects[hideout];
-
-            //}
-            //else if (room == "BackYard")
-            //{
-            //    var randomhideout = new Random();
-            //    int hideout = randomhideout.Next(1,BackYard.HidingObjects.Count);
-            //     hiddingplace = MasterBedroom.HidingObjects[hideout];
-
-            //}
-            //else if (room == "LivingRoom")
-            //{
-            //    var randomhideout = new Random();
-            //    int hideout = randomhideout.Next(1,LivingRoom.HidingObjects.Count);
-            //     hiddingplace = MasterBedroom.HidingObjects[hideout];
-
-            //}
             
 
 
-            bool foundComputer = false;
+            
             House PresentHouse = LivingRoom;
             bool continueplaying = true;
+            Console.WriteLine(" ");
+            Console.WriteLine(LivingRoom.Message);
             while (continueplaying)
             {
-                Console.WriteLine(LivingRoom.Message);
+                
                 bool keeprunning = true;
+                int count = 0;
+                
                 while (keeprunning)
                 {
-                    Console.WriteLine("Open the hideout in the Living room to look for Mr Computer and enter the hideout from this list");
-                    string response2 = Console.ReadLine().ToLower().Replace(" ","");
-                    if (response2==RandomString(room))
+                    
+                    Console.WriteLine("Open the hideout in the Living room to look for Mr Computer and enter the hideout from this list {Couch :Enteratinment:Cabinet}");
+                    string response = Console.ReadLine().ToLower();
+                    count = count + 1;
+                    if ( response == result)
                     {
-                        Console.WriteLine("Hey you Won!");
-                        break;
+                       
+                        Console.WriteLine("Congratulation you Won!");
 
+                        break;
                     }
                     else
                     {
-                        Console.WriteLine("Else do you still need to keep seraching. Do you still need to seach for him? y for yes and n for no");
-                        string response3 = Console.ReadLine().ToLower();
-                        if (response3 == "n")
+
+                        Console.WriteLine("He is not there, you will have to check other areas in the room");
+
+                        if (count == LivingRoom.HidingObjects.Count)
                         {
-                            keeprunning = false;
+                            break;
                         }
+                            
+                    }
+                   
+                }
+                bool running = true;
+                Console.Clear();
+                while (running)
+                {
+                    Console.WriteLine("It seem he is not in the living room, Use one  of the exit door to search for him in the Kitchen: Enter  Kitchen to go to to Ktchen");
+                    string kitchen = Console.ReadLine().ToLower();
+                    if (kitchen.Contains("kitchen"))
+                    {
+                        Console.WriteLine(Kitchen.Message);
+                        break;
+                    }
+                    
+                    
+                }
+                bool looking = true;
+                int total = 0;
+                while (looking)
+                {
+                    
+                    Console.WriteLine("Open the hideout in the Kitchen to look for Mr Computer and enter the hideout from this list {Island Oven:Cabinet}");
+                    string kitchenhideout = Console.ReadLine();
+                    total = total + 1;
+                    if (kitchenhideout == result)
+                    {
+                        Console.WriteLine("Congratulation you Won!");
+
+                        break;
+                    }
+                    else
+                    {
+
+                        Console.WriteLine("He is not there, you will have to check other areas in the room");
+
+                        if (total == Kitchen.HidingObjects.Count)
+                        {
+                            looking = false;
+                            break;
+                        }
+
+
+
+                    }
+
+                }
+                Console.Clear();
+                bool searching = true;
+
+                while (searching)
+                {
+                    Console.WriteLine("It seem he is not in the Kitchen , go back to the Living room: Enter LivingRoom  to Go back:");
+                    string Living = Console.ReadLine().ToLower();
+                    if (Living.Contains("livingroom"))
+                    {
+                        Console.WriteLine("You can  go through the hallway to the MasterBedroom");
+                        break;
                     }
 
 
-                    Console.WriteLine("Move tho the next room ");
-                    string response = Console.ReadLine().ToLower();
-                   
+                }
+                bool search = true;
+                while (search)
+                {
+                    Console.WriteLine("Enter MasterBedroom to go MasterBedroom");
+                    string masterBedroom = Console.ReadLine().ToLower();
+                    if (masterBedroom.Contains("masterbedroom"))
+                    {
+                        Console.WriteLine(MasterBedroom.Message);
+                        break;
+                    }
 
-                    //string interactnavcommand = Console.ReadLine().ToLower();
-                    //if (interactnavcommand.Contains("move to") && interactnavcommand.Contains(" masterbedroom"))
-                    //{
-                    //    Console.WriteLine(MasterBedroom.Message);
-                    //}
-                    //else if (interactnavcommand.Contains("move to") && interactnavcommand.Contains(" bedroom"))
-                    //{
-                    //    Console.WriteLine(Bedroom.Message);
-                    //}
-                    //else if (interactnavcommand.Contains("move to") && interactnavcommand.Contains(" kitchen"))
-                    //{
-                    //    Console.WriteLine(Kitchen.Message);
-                    //}
-                    //else if (interactnavcommand.Contains("move to") && interactnavcommand.Contains(" bathroom"))
-                    //{
-                    //    Console.WriteLine(BathRoom.Message);
-                    //}
-                    //else if (interactnavcommand.Contains("move to") && interactnavcommand.Contains(" long hall way"))
-                    //{
-                    //    Console.WriteLine(LongHallWay.Message);
-                    //}
-                    //else if (interactnavcommand.Contains("move to") && interactnavcommand.Contains(" front yard"))
-                    //{
-                    //    Console.WriteLine(FrontYard.Message);
-                    //}
-                    //else if (interactnavcommand.Contains("move to") && interactnavcommand.Contains(" back yard"))
-                    //{
-                    //    Console.WriteLine(BackYard.Message);
-                    //}
-                    //else if (interactnavcommand.Contains("move to") && interactnavcommand.Contains(" living room"))
-                    //{
-                    //    Console.WriteLine(LivingRoom.Message);
-                    //}
 
                 }
+                bool search2 = true;
+                int counting = 0;
+                while (search2)
+                {
+                    Console.WriteLine("\n\nCheck for him by entering any of the hideout places\n\n");
+                    string masterBedroomHideout = Console.ReadLine().ToLower().Replace(" ","");
+                    counting = counting + 1;
+                    if(masterBedroomHideout == result)
+                    {
+                        Console.WriteLine("Congratulation you Won!");
+
+                        break;
+                    }
+                    else
+                    {
+
+                        Console.WriteLine("\n\nHe is not there, you will have to check other areas in the room\n\n");
+
+                        if (counting == MasterBedroom.HidingObjects.Count)
+
+                        {
+                            
+                            search2 = false;
+                            break;
+                        }
+
+                    }
+                }
+                Console.Clear();
+                bool searching1 = true;
+
+                while (searching1)
+                {
+                    Console.WriteLine("\nGo back to the Hallway, he might have run away!, Enter Hallway to Open the door\n");
+                    string hallway = Console.ReadLine().ToLower();
+                    if (hallway.Contains("hallway"))
+                    {
+                        Console.WriteLine(LongHallWay.Message);
+                        Console.WriteLine("\n Search for him from the second Bedroom , He might be hiding there\n");
+                        break;
+                    }
 
 
+                }
+                bool search3 = true;
+                while (search3)
+                {
+                    Console.WriteLine("Enter Bedroom to go Bedroom");
+                    string bedroom = Console.ReadLine().ToLower();
+                    if (bedroom.Contains("bedroom"))
+                    {
+                        Console.WriteLine(Bedroom.Message);
+                        break;
+                    }
+
+
+                }
+                Console.Clear();
+                bool search4 = true;
+                int counting4 = 0;
+                while (search4)
+                {
+                    Console.WriteLine("\n\nCheck for him by entering any of the hideout places\n\n");
+                    string bedroomHideout = Console.ReadLine().ToLower().Replace(" ", "");
+                    counting4 = counting4 + 1;
+                    if (bedroomHideout == result)
+                    {
+                        Console.WriteLine("Congratulation you Won!");
+
+                        break;
+                    }
+                    else
+                    {
+
+                        Console.WriteLine("\n\nHe is not there, you will have to check other areas in the room\n\n");
+
+                        if (counting4 == Bedroom.HidingObjects.Count)
+
+                        {
+
+                            search2 = false;
+                            break;
+                        }
+
+                    }
+                }
 
             }
         }
@@ -242,49 +315,9 @@ namespace Hide_And_Seek
             return place;
         }
 
-        //private void MovetoNextRoom(string roomname)
-        //{
+        
 
-        //    if (roomname.Contains(roomname))
-        //    {
-        //        House house = rooms[roomname];
-        //        Console.WriteLine(house.Message);
-        //        Console.WriteLine("Do you want to check if he's inside the this room? enter y for yes and n for no ,");
-        //        string response1 = Console.ReadLine();
-        //        if (response1 == "y")
-        //        {
-        //            bool keeprunning = true;
-        //            while (keeprunning)
-        //            {
-        //                Console.WriteLine("Open each hideout by pressing check + hideout");
-        //                string response2 = Console.ReadLine();
-        //                if (response2.Contains(place))
-        //                {
-        //                    Console.WriteLine("Hey you Won!");
-        //                    break;
-
-        //                }
-        //                else
-        //                {
-        //                    Console.WriteLine(" you missed him,  do you still need to keep seraching Do you still need to seach for him? y for yes and n for no");
-        //                    string response3 = Console.ReadLine().ToLower();
-        //                    if (response3 == "n")
-        //                    {
-        //                        keeprunning = false;
-        //                    }
-        //                }
-
-        //            }
-        //        }
-
-
-
-
-        //    }
-
-        //}
-
-        public void homescreensplash()
+        public void HomeScreenSplash()
             {
                 Console.WriteLine("Welcome to hide and seek!\n\n" +
                    "In this game you will be playing hide and seek with the computer\n" +
@@ -305,11 +338,6 @@ namespace Hide_And_Seek
                    "GOOD LUCK!"
                    );
             }
-
-
-
-
-
 
 
 
